@@ -42,6 +42,9 @@ if [ ! -f "$HOME/.zshrc" ]; then
   touch "$HOME/.zshrc"
 fi
 
+# install oh-my-zsh
+curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+
 # shellcheck disable=SC2016
 append_to_zshrc 'export PATH="$HOME/.bin:$PATH"'
 
@@ -109,7 +112,6 @@ gem_install_or_update() {
   else
     fancy_echo "Installing %s ..." "$1"
     gem install "$@"
-    rbenv rehash
   fi
 }
 
@@ -152,9 +154,13 @@ brew unlink openssl && brew link openssl --force
 brew_install_or_upgrade 'libyaml'
 
 source /usr/local/share/chruby/chruby.sh
-ruby-install ruby 2.2.1
 
-echo "ruby-2.2.1" > ~/.ruby-version
+if ! chruby | grep "ruby-2.1.5"; then
+  ruby-install ruby 2.1.5
+fi
+
+echo "ruby-2.1.5" > ~/.ruby-version
+chruby 2.1.5
 
 gem update --system
 
