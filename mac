@@ -149,6 +149,7 @@ brew_install_or_upgrade 'ruby-install'
 append_to_zshrc 'source /usr/local/share/chruby/chruby.sh' 1
 append_to_zshrc 'source /usr/local/share/chruby/auto.sh' 1
 
+
 brew_install_or_upgrade 'openssl'
 brew unlink openssl && brew link openssl --force
 brew_install_or_upgrade 'libyaml'
@@ -160,6 +161,7 @@ if ! chruby | grep "ruby-2.1.5"; then
 fi
 
 echo "ruby-2.1.5" > ~/.ruby-version
+append_to_zshrc 'chruby $(cat ~/.ruby-version)'
 chruby 2.1.5
 
 gem update --system
