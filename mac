@@ -156,11 +156,11 @@ brew_install_or_upgrade 'libyaml'
 
 source /usr/local/share/chruby/chruby.sh
 
-if ! chruby | grep "ruby-2.1.5"; then
-  ruby-install ruby 2.1.5
+if ! chruby | grep "ruby-2.1.6"; then
+  ruby-install ruby 2.1.6
 fi
 
-echo "ruby-2.1.5" > ~/.ruby-version
+echo "ruby-2.1.6" > ~/.ruby-version
 append_to_zshrc 'chruby $(cat ~/.ruby-version)'
 chruby 2.1.5
 
