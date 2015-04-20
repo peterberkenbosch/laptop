@@ -162,7 +162,7 @@ fi
 
 echo "ruby-2.1.6" > ~/.ruby-version
 append_to_zshrc 'chruby $(cat ~/.ruby-version)'
-chruby 2.1.5
+chruby 2.1.6
 
 gem update --system
 
