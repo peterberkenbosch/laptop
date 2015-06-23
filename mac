@@ -133,6 +133,7 @@ fi
 fancy_echo "Updating Homebrew formulas ..."
 brew update
 
+brew_install_or_upgrade 'zsh'
 brew_install_or_upgrade 'git'
 brew_install_or_upgrade 'postgres'
 brew_launchctl_restart 'postgresql'
@@ -156,13 +157,13 @@ brew_install_or_upgrade 'libyaml'
 
 source /usr/local/share/chruby/chruby.sh
 
-if ! chruby | grep "ruby-2.1.6"; then
-  ruby-install ruby 2.1.6
+if ! chruby | grep "ruby-2.2.2"; then
+  ruby-install ruby 2.2.2
 fi
 
-echo "ruby-2.1.6" > ~/.ruby-version
+echo "ruby-2.2.2" > ~/.ruby-version
 append_to_zshrc 'chruby $(cat ~/.ruby-version)'
-chruby 2.1.6
+chruby 2.2.2
 
 gem update --system
 
