@@ -176,6 +176,16 @@ fancy_echo "Configuring Bundler ..."
 if ! command -v rcup >/dev/null; then
   brew_tap 'thoughtbot/formulae'
   brew_install_or_upgrade 'rcm'
+else
+  fancy_echo "RCM already installed. skipping."
+fi
+
+if ! command -v phantomenv >/dev/null; then
+  git clone -b v0.0.10 https://github.com/boxen/phantomenv.git ~/.phantomenv
+  append_to_zshrc 'export PATH="$HOME/.phantomenv/bin:$PATH"'
+  append_to_zshrc 'eval "$(phantomenv init -)"'
+else
+  fancy_echo "phantomenv already installed. Skipping ..."
 fi
 
 if [ -f "$HOME/.laptop.local" ]; then
